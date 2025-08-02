@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$39lu^(ib2m98*e8t)&!m6j2+s^1-uls8w%$to8-575+=92*4*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['SuperGameRomal.pythonanywhere.com', '127.0.0.1', 'localhost']
 
