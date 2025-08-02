@@ -10,30 +10,125 @@
       src: url("{% static 'pixel-font.ttf' %}") format('truetype');
     }
 
+    /* Основные стили */
     body {
       margin: 0;
       padding: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #000000, #555555);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       font-family: 'PixelFont', monospace;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #fff;
+      overflow: hidden;
+    }
+
+    /* Мягкий шум для фона */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("{% static 'noise.png' %}") repeat;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
     }
 
     .container {
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 40px;
-      border: 4px solid #fff;
+      position: relative;
+      background: rgba(10, 10, 10, 0.85);
+      padding: 40px 30px;
+      border: 4px solid #00ff00;
       border-radius: 16px;
       text-align: center;
-      box-shadow: 0 0 20px #000;
-      max-width: 400px;
+      box-shadow:
+        0 0 10px #00ff00,
+        inset 0 0 10px #00ff00;
+      max-width: 420px;
       width: 90%;
+      z-index: 1;
+      animation: pulse-border 3s infinite alternate;
     }
 
-    /* Остальные стили как в твоём шаблоне */
+    @keyframes pulse-border {
+      0% {
+        box-shadow:
+          0 0 10px #00ff00,
+          inset 0 0 10px #00ff00;
+      }
+      100% {
+        box-shadow:
+          0 0 30px #00ff00,
+          inset 0 0 30px #00ff00;
+      }
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 6px #00ff00;
+    }
+
+    input[type="number"] {
+      padding: 12px;
+      font-size: 18px;
+      font-family: inherit;
+      background: #111;
+      color: #0f0;
+      border: 2px solid #00ff00;
+      width: 120px;
+      border-radius: 8px;
+      text-align: center;
+      transition: box-shadow 0.3s ease;
+      outline: none;
+    }
+    input[type="number"]:focus {
+      box-shadow: 0 0 10px #00ff00;
+      background: #222;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 28px;
+      font-size: 18px;
+      font-family: inherit;
+      background: linear-gradient(45deg, #00ff00, #008800);
+      border: 2px solid #00cc00;
+      color: #000;
+      cursor: pointer;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      box-shadow: 0 3px 6px #006600;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(45deg, #00ff88, #00cc44);
+      box-shadow: 0 0 15px #00ff00;
+      color: #fff;
+    }
+
+    .message {
+      margin-top: 25px;
+      font-size: 20px;
+      color: #ffff66;
+      text-shadow: 0 0 6px #ffff33;
+      min-height: 28px;
+    }
+
+    .win-img {
+      margin-top: 25px;
+      width: 100px;
+      filter: drop-shadow(0 0 5px #00ff00);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px #00ff00); }
+      to { filter: drop-shadow(0 0 15px #00ff00); }
+    }
   </style>
 </head>
 <body>
