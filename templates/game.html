@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎯 Пиксельная Угадайка</title>
+  <style>
+    @font-face {
+      font-family: 'PixelFont';
+      src: url("{% static 'pixel-font.ttf' %}") format('truetype');
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #000000, #555555);
+      font-family: 'PixelFont', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border: 4px solid #fff;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 0 20px #000;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    /* Остальные стили как в твоём шаблоне */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎮 Угадай число от 1 до 100</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="number" name="guess" min="1" max="100" required autocomplete="off" />
+      <br />
+      <button type="submit">Проверить</button>
+    </form>
+
+    {% if message %}
+      <div class="message">{{ message }}</div>
+    {% endif %}
+
+    {% if "Угадал" in message %}
+      <img class="win-img" src="{% static 'win.png' %}" alt="Победа!" />
+    {% endif %}
+  </div>
+</body>
+</html>
